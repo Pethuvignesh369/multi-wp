@@ -3,6 +3,8 @@
 This repository contains all necessary files to deploy a multi-site WordPress setup on AWS EC2 with the following architecture:
 
 ## Architecture
+
+![Architecture Diagram](architecture.png)
 - **NGINX**: Reverse proxy and web server
 - **Site 1**: WordPress with PHP 8.1 + MySQL
 - **Site 2**: WordPress with PHP 8.4 + MariaDB
