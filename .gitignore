@@ -1,0 +1,18 @@
+# Environment variables
+.env
+
+# SSH Keys
+ssh-keys/
+
+# Logs
+logs/
+
+# Backups
+backups/
+
+# Docker volumes
+volumes/
+
+# OS files
+.DS_Store
+Thumbs.db

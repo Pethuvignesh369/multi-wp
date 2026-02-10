@@ -1,34 +1,54 @@
-# WordPress Multi-Site EC2 Deployment
+# WordPress Multi-Site Docker Deployment
 
-This repository contains all necessary files to deploy a multi-site WordPress setup on AWS EC2 with the following architecture:
+This repository contains all necessary files to deploy a multi-site WordPress setup using Docker with the following architecture:
 
 ## Architecture
 
 ![Architecture Diagram](architecture.png)
+
 - **NGINX**: Reverse proxy and web server
 - **Site 1**: WordPress with PHP 8.1 + MySQL
 - **Site 2**: WordPress with PHP 8.4 + MariaDB
-- **PHPMyAdmin**: Database management interface
-- **FTP/SFTP**: Secure file transfer access
+- **PHPMyAdmin**: Database management interface (2 instances)
+- **SFTP**: Secure file transfer access for both sites
 
 ## Files Included
-- `deploy.sh` - Main deployment script
-- `nginx/nginx.conf` - Main NGINX configuration
-- `nginx/site1.conf` - Site 1 NGINX configuration (PHP 8.1)
-- `nginx/site2.conf` - Site 2 NGINX configuration (PHP 8.4)
-- `setup-databases.sql` - Database setup script
-- `INSTALLATION.md` - Detailed installation guide
+- `docker-compose.yml` - Main Docker Compose configuration
+- `nginx/docker-nginx.conf` - Main NGINX configuration
+- `nginx/docker-site1.conf` - Site 1 NGINX configuration (PHP 8.1)
+- `nginx/docker-site2.conf` - Site 2 NGINX configuration (PHP 8.4)
+- `.env.example` - Environment variables template
+- `DOCKER-SETUP.md` - Detailed setup guide
 
 ## Quick Start
-1. Launch Ubuntu EC2 instance
-2. Upload these files to your instance
-3. Run `sudo ./deploy.sh`
-4. Follow steps in INSTALLATION.md
+```bash
+# Clone repository
+git clone <your-repo>
+cd <your-repo>
+
+# Copy environment file and configure
+cp .env.example .env
+nano .env
+
+# Start all services
+docker-compose up -d
+
+# Check status
+docker-compose ps
+```
+
+## Access Points
+- **Site 1**: http://localhost (or your domain)
+- **Site 2**: http://site2.example.com
+- **PHPMyAdmin (MySQL)**: http://localhost:8080
+- **PHPMyAdmin (MariaDB)**: http://localhost:8081
+- **SFTP Site 1**: Port 2221
+- **SFTP Site 2**: Port 2222
 
 ## Requirements
-- Ubuntu 22.04 or 24.04
-- At least 2GB RAM (t2.small or larger recommended)
+- Docker Engine 20.10+
+- Docker Compose 2.0+
+- At least 4GB RAM
 - 20GB+ storage
-- Security group with ports 22, 80, 443 open
 
-See INSTALLATION.md for complete setup instructions.
+See DOCKER-SETUP.md for complete setup instructions.
