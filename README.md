@@ -24,7 +24,7 @@ This repository contains all necessary files to deploy a multi-site WordPress se
 4. Follow steps in INSTALLATION.md
 
 ## Requirements
-- Ubuntu 20.04 or 22.04
+- Ubuntu 22.04 or 24.04
 - At least 2GB RAM (t2.small or larger recommended)
 - 20GB+ storage
 - Security group with ports 22, 80, 443 open
